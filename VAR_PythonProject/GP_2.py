@@ -43,7 +43,7 @@ try:
     teamList = ['Man City', 'Man Utd', 'Tottenham', 'Liverpool', 'Chelsea', 'Arsenal', 'Burnley', 'Everton', 'Leicester City', 'Newcastle Utd',
                   'Crystal Palace', 'West Ham', 'Brighton', 'Southampton']
 
-    data = read_csv('https://raw.githubusercontent.com/SebastianAshcallay/CMSC206/main/GroupProject_PL_Table[version2].csv')
+    data = read_csv('https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bv2%5D.csv')
     print('Which Premier League team would you like to see points for?')
     printList(teamList)
     team = input('\n--> ')

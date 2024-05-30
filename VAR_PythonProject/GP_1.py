@@ -55,7 +55,7 @@ def seasons_str(csv):
 
 try:
     # Read and parse data from CSV file using URL
-    data = pd.read_csv("https://raw.githubusercontent.com/SebastianAshcallay/CMSC206/main/GroupProject_PL_Table[version2].csv")
+    data = pd.read_csv("https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bv2%5D.csv")
 
     # Ask user to indicate which season to display
     #season = input("\nWhich season do you want to graph? \n- 2019/20\n- 2020/21\n- 2021/22\n>>> ")
