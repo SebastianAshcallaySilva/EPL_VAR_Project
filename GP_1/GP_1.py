@@ -7,7 +7,23 @@ import numpy as np
 plt.style.use('ggplot')
 
 # This program displays an animated bar graph to compare each season's overall
-# points (with and without VAR penalty calls).
+# points (with and without VAR penalty calls). The generated graph will be saved
+# in a GIF file.
+
+# To generate no loop
+from PIL import Image
+import io
+
+def convert(old_filename, new_filename, duration):
+    images = []
+    with Image.open(old_filename) as im:
+        for i in range(im.n_frames):
+            im.seek(i)
+            buf = io.BytesIO()
+            im.save(buf, format='png')
+            buf.seek(0)
+            images.append(Image.open(buf))
+    images[0].save(new_filename, save_all=True, append_images=images[1:], optimize=False, duration=duration)
 
 # Abbreviated Team Names
 abbv = {
@@ -55,11 +71,12 @@ def seasons_str(csv):
 
 try:
     # Read and parse data from CSV file using URL
-    data = pd.read_csv("https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bv2%5D.csv")
+    url = 'https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bseasons%5D.csv'
+    data = pd.read_csv(url)
 
     # Ask user to indicate which season to display
-    #season = input("\nWhich season do you want to graph? \n- 2019/20\n- 2020/21\n- 2021/22\n>>> ")
-    season = input(f"\nWhich season do you want to graph? {seasons_str(data)}\n>>> ")
+    season = input("\nWhich season do you want to graph? \n- 2019/20\n- 2020/21\n- 2021/22\n>>> ")
+    #season = input(f"\nWhich season do you want to graph? {seasons_str(data)}\n>>> ")
     teams = data[season].tolist()
     for n in range(len(teams)):
       if teams[n] in abbv.keys():
@@ -129,7 +146,17 @@ try:
         count += 1
         
     ani = FuncAnimation(fig, animate, frames = 49, interval = 100, repeat= False)
-    plt.show()
+    #plt.show()
+
+    season_title = ''
+    match season:
+      case "2019/20": season_title = '2019_20'
+      case "2020/21": season_title = '2020_21'
+      case "2021/22": season_title = '2021_22'
+      case _: season_title = 'err'
+
+    ani.save(f'preAnimation_{season_title}.gif', writer= 'pillow', fps=10)
+    convert(f"preAnimation_{season_title}.gif", f"GP1_{season_title}.gif", 100) # no loop
 
 except Exception as ex:
     print(f'Error: [{str(ex)}]')
