@@ -160,6 +160,7 @@ menu {
 
 .section-gp {
     padding-bottom: 10em;
+    width: 100vw;
 }
 
 .section-description {
@@ -189,19 +190,20 @@ menu {
 
 .section-gallery {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
     margin: 0 auto;
-    padding: 20px 10px;
+    width: 100%;
 }
 
-.section-gallery .gif {
-    padding: 0.25em;
-    width: 80vw;
+.section-gallery-gif {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.section-gallery-gif img {
     max-width: 400px;
-    object-fit: cover;
+    padding: 10px;
 }
 
 .section-code {
@@ -282,7 +284,8 @@ menu {
 .section-small-gallery-title {
     background-color: #eddfef;
     border-bottom: 2px solid black;
-    width: 55vw;
+    width: 80vw;
+    max-width: 400px;
     max-height: 4em;
 }
 
@@ -297,14 +300,16 @@ menu {
 
 .section-small-gallery-gif {
     background-color: #464655;
-    width: 55vw;
+    width: 80vw;
+    max-width: 400px;
 }
 
 .section-small-gallery-gif img {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 55vw;    
+    width: 80vw;    
+    max-width: 400px;
     object-fit: cover;
 }
 
@@ -315,7 +320,7 @@ menu {
     align-items: center;
     align-content: space-evenly;
     flex-wrap: wrap;
-    padding-left: 2em;
+    padding: 2em;
 }
 
 /* FOOTER SECTION */
