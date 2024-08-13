@@ -2,8 +2,28 @@ from pandas import *
 import re
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
+from matplotlib import animation
 from matplotlib.animation import FuncAnimation
 
+# This program display an animated plot graph to compare points per season for a specific team
+# with and without VAR. The generated graph will be saved in a GIF file.
+
+# ----------------- ANIMATION ----------------------------
+# To generate no loop gif
+from PIL import Image
+import io
+
+def convert(old_filename, new_filename, duration):
+    images = []
+    with Image.open(old_filename) as im:
+        for i in range(im.n_frames):
+            im.seek(i)
+            buf = io.BytesIO()
+            im.save(buf, format='png')
+            buf.seek(0)
+            images.append(Image.open(buf))
+    images[0].save(new_filename, save_all=True, append_images=images[1:], optimize=False, duration=duration)
+# ---------------------------------------------------------
 
 def printList(aList):
   for elements in aList:
@@ -43,7 +63,7 @@ try:
     teamList = ['Man City', 'Man Utd', 'Tottenham', 'Liverpool', 'Chelsea', 'Arsenal', 'Burnley', 'Everton', 'Leicester City', 'Newcastle Utd',
                   'Crystal Palace', 'West Ham', 'Brighton', 'Southampton']
 
-    data = read_csv('https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bv2%5D.csv')
+    data = read_csv('https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table[seasons].csv')
     print('Which Premier League team would you like to see points for?')
     printList(teamList)
     team = input('\n--> ')
@@ -116,7 +136,29 @@ try:
       count += 1
 
     ani = FuncAnimation(plt.figure(), animate, interval = 500, frames = (season_cnt - 1), repeat = False)
-    plt.show()
+    
+    # Use when matplotlib works: plt.show()
+    # Use to save gif:
+    team_title = ''
+    match team:
+       case "Man City": team_title = 'man-city'
+       case "Man Utd": team_title = 'man-utd'
+       case "Tottenham": team_title = 'spurs'
+       case "Liverpool": team_title = 'liverpool'
+       case "Chelsea": team_title = 'chelsea'
+       case "Arsenal": team_title = 'arsenal'
+       case "Burnley": team_title = 'burnley'
+       case "Everton": team_title = 'everton'
+       case "Leicester City": team_title = 'leicester'
+       case "Newcastle Utd": team_title = 'newcastle'
+       case "Crystal Palace": team_title = 'crystal-palace'
+       case "West Ham": team_title = 'west-ham'
+       case "Brighton": team_title = 'brighton'
+       case "Southampton": team_title = 'soton'
+       case _: team_title = 'test'
+    
+    ani.save(f'preAnimation_{team_title}.gif', writer='pillow', fps=1)
+    convert(f'preAnimation_{team_title}.gif', f'GP2_{team_title}.gif', 500) # no loop
     
 except Exception as ex:
     print(f'Error: [{str(ex)}]')
