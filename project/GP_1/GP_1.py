@@ -80,7 +80,7 @@ def seasons_str(csv):
 def gp1():
   try:
       # Read and parse data from CSV file using URL
-      url = 'https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/VAR_PythonProject/PL_Table%5Bseasons%5D.csv'
+      url = 'https://raw.githubusercontent.com/SebastianAshcallaySilva/EPL_VAR_Project/main/project/PL_Table%5Bseasons%5D.csv'
       data = pd.read_csv(open_url(url))
       #data = pd.read_csv(url)
 
