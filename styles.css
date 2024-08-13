@@ -258,7 +258,7 @@ menu {
     min-width: 50em !important;
     display: flex;
     flex-direction: column-reverse;
-    text-wrap-mode: wrap !important;
+    text-wrap: wrap !important;
 }
 
 /* GP2 */
