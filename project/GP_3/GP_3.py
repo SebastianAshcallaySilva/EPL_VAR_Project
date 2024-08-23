@@ -2,6 +2,12 @@ import requests
 import html2text
 import matplotlib.pyplot as plt
 
+from matplotlib import animation
+from matplotlib.animation import FuncAnimation
+
+# This program display a bar graph to compare net scores awarded from VAR decisions
+# for each team in a single season. The generated graph will be saved in a JPEG file.
+
 team_legend = {
     "B'mouth": 'AFC Bournemouth',
     'Nottm Forest': 'Nottingham Forest' ,
@@ -36,6 +42,7 @@ def printGraph(teamSet, scoreSet, xlabel, ylabel, title):
 
   # Display the chart
   plt.show()
+  #plt.savefig(f'GP3_2019_20.png')
 
 def sign(stringNum):
   if '-' in stringNum:

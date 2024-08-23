@@ -54,3 +54,47 @@ function renderGif() {
     
     document.getElementById("myImg-gif").src = imgUrl;
 }
+
+function renderPng() {
+    var selected = document.getElementById("seasonOption");
+    var pngUrl = "";
+
+    switch (selected.value * 1) {
+        case 1: pngUrl = "project/GP_3/GP3_2019_20.png"; break;
+        case 2: pngUrl = "project/GP_3/GP3_2020_21.png"; break;
+        case 3: pngUrl = "project/GP_3/GP3_2021_22.png"; break;
+        default: pngUrl = "project/logos/pl-stats-logo.jpg";break;
+    }
+
+    document.getElementById("myPng").src = pngUrl;
+}
+
+function show_gp1() {
+    var seasonSelected = document.getElementById("seasons")
+    var blankDiv = document.getElementById("blank-div")
+    var div1 = document.getElementById("gp1-2019-20")
+    var div2 = document.getElementById("gp1-2020-21")
+    var div3 = document.getElementById("gp1-2021-22")
+    
+    if (seasonSelected.value == 0) {
+        blankDiv.style.visibility = "visible";
+        div1.style.visibility = "hidden";
+        div2.style.visibility = "hidden";
+        div3.style.visibility = "hidden";
+    } else if (seasonSelected.value == 1) {
+        blankDiv.style.visibility = "hidden";
+        div1.style.visibility = "visible";
+        div2.style.visibility = "hidden";
+        div3.style.visibility = "hidden";
+    } else if (seasonSelected.value == 2) {
+        blankDiv.style.visibility = "hidden";
+        div1.style.visibility = "hidden";
+        div2.style.visibility = "visible";
+        div3.style.visibility = "hidden";
+    } else if (seasonSelected.value == 3) {
+        blankDiv.style.visibility = "hidden";
+        div1.style.visibility = "hidden";
+        div2.style.visibility = "hidden";
+        div3.style.visibility = "visible";
+    }
+}

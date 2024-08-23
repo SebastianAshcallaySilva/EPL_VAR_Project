@@ -1,155 +1,153 @@
-<!DOCTYPE html>  
-<html lang="en">  
-  <head>  
-    <meta charset="utf-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1" />  
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="mediaqueries.css">
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />  
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    <title>Python — EPL VAR PROJECT</title>  
-  </head>  
-  <body>
-    <menu>
-      <nav id="desktop-nav">
-        <div class="logo bold">
-          <img id="project-logo" src="project/logos/premier-league-logo.png">
-          VAR Analysis
-        </div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="#gp1">GP1</a></li>
-                <li><a href="#gp2">GP2</a></li>
-                <li><a href="#gp3">GP3</a></li>
-                <li><a href="#gp4">GP4</a></li>
-            </ul>
-        </div>
-      </nav>
-      <nav id="hamburger-nav">
-          <div class="logo bold">
-            <img id="project-logo" src="project/logos/premier-league-logo.png">
-            VAR Analysis
-          </div>
-          <div class="hamburger-menu">
-              <div class="hamburger-icon" onclick="toggleMenu()">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="mediaqueries.css">
+        <title>Python — EPL VAR PROJECT</title>
+    </head>
+    <body>
+        <nav class="nav-bar">
+            <div class="nav-icon">
+                <img src="project/logos/premier-league-logo.png" alt="pl-logo">
+                <p>VAR Project</p>
+            </div>
+            <div class="nav-links">
+                <a class="nav-link" href="#gp1">GP1</a>
+                <a class="nav-link" href="#gp2">GP2</a>
+                <a class="nav-link" href="#gp3">GP3</a>
+            </div>
+        </nav>
+        <section id="gp1">
+            <header class="section-header">
+                <img src="project/logos/var-logo.png" alt="var-logo">
+                <h1>GP1 - Season Table (VAR v. No VAR)</h1>
+            </header>
+            <p class="description">This program displays an animated bar graph of a season table
+                to compare scores with and without VAR intervention. The teams in <span class="green blocky">green</span> 
+                are teams that have benefitted from VAR intervention, while teams in <span class="red blocky">red</span> are teams that
+                have worsened from VAR intervention.<i> Hover over each image to replay the animation.</i></p>
+            <div class="section-gallery">
+                <div class="section-gallery-gif">
+                    <img id="GP1-2019-20" class="gif" src="project/logos/2019_20_screen.png" 
+                    alt="GP1 animation for the 2019/20 season"
+                    onmouseover="this.src='project/GP_1/preAnimation_2019_20.gif'"
+                    onmouseout="this.src='project/logos/2019_20_screen.png'">
+                    <img id="GP1-2020-21" class="gif" src="project/logos/2020_21_screen.png" 
+                    alt="GP1 animation for the 2020/21 season"
+                    onmouseover="this.src='project/GP_1/preAnimation_2020_21.gif'"
+                    onmouseout="this.src='project/logos/2020_21_screen.png'">
+                    <img id="GP1-2021-22" class="gif" src="project/logos/2021_22_screen.png" 
+                    alt="GP1 animation for the 2021/22 season"
+                    onmouseover="this.src='project/GP_1/preAnimation_2021_22.gif'"
+                    onmouseout="this.src='project/logos/2021_22_screen.png'">
+                </div>
+            </div>
+            <div class="section-code">
+                <div class="section-terminal">
+                    <div class="top-block">
+                        GP_1.py
+                    </div>
+                    <div id="blank-div" class="bottom-block">
+                    </div>
+                    <div id="gp1-2019-20" class="bottom-block">
+                        In the Premier League's 2019/20 season, the participating teams averaged a total of 52 pts. with VAR, and a total of 53 pts. without VAR.
+                        <br>
+                        >>> Teams Averaged more Points without VAR <<<
+                    </div>
+                    <div id="gp1-2020-21" class="bottom-block">
+                        In the Premier League's 2020/21 season, the participating teams averaged a total of 53 pts. with VAR, and a total of 52 pts. without VAR.
+                        <br>
+                        >>> Teams Averaged less Points without VAR <<<
+                    </div>
+                    <div id="gp1-2021-22" class="bottom-block">
+                        In the Premier League's 2021/22 season, the participating teams averaged a total of 53 pts. with VAR, and a total of 52 pts. without VAR.
+                        <br>
+                        >>> Teams Averaged less Points without VAR <<<
+                    </div>
+                </div>
+                <div class="selector"> 
+                    <label for="seasons">Select for additional information</label>
+                    <select name="seasons" id="seasons" onchange="show_gp1()">
+                        <option class="default" value="0">Choose a Season</option>
+                        <option value="1">2019/20</option>
+                        <option value="2">2020/21</option>
+                        <option value="3">2021/22</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <section id="gp2">
+            <header class="section-header">
+                <img src="project/logos/var-logo.png" alt="var-logo">
+                <h1>GP2 - Team Point Evolution (VAR v. No VAR)</h1>
+            </header>
+            <p class="description">
+            This program displays an animated plot graph of a team's points 
+            over the course of five seasons since the introduction of VAR to 
+            the Premier League.<i> Hover over each image to replay the animation for the corresponding season.</i>
+            </p>
+            <div class="section-code-select">
+                <form class="selector">
+                    <label for="teamOption">Select a team</label>
+                    <select name="teams" onchange="renderTeam(); renderGif();" id="teamOption">
+                        <option value="" hidden selected>--Select a team--</option>
+                        <option value="1" name="man-city">Man City</option>
+                        <option value="2" name="man-utd">Man United</option>
+                        <option value="3" name="spurs">Tottenham</option>
+                        <option value="4" name="liverpool">Liverpool</option>
+                        <option value="5" name="chelsea">Chelsea</option>
+                        <option value="6" name="arsenal">Arsenal</option>
+                        <option value="7" name="burnley">Burnley</option>
+                        <option value="8" name="everton">Everton</option>
+                        <option value="9" name="leicester">Leicester City</option>
+                        <option value="10" name="newcastle">Newcastle Utd</option>
+                        <option value="11" name="crystal-palace">Crystal Palace</option>
+                        <option value="12" name="west-ham">West Ham</option>
+                        <option value="13" name="brighton">Brighton</option>
+                        <option value="14" name="soton">Southampton</option>
+                    </select>
+                </form>
+                <div class="section-small-gallery">
+                    <div class="section-small-gallery-top">
+                        <img id="myImg" src="project/logos/premier-league-logo.png">
+                    </div>
+                    <div class="section-small-gallery-bottom">
+                        <img id="myImg-gif" src="project/logos/pl-stats-logo.jpg">
+                    </div>
+                </div>
               </div>
-              <div class="menu-links">
-                  <li><a href="#gp1" onclick="toggleMenu()">GP1</a></li>
-                  <li><a href="#gp2" onclick="toggleMenu()">GP2</a></li>
-                  <li><a href="#gp3" onclick="toggleMenu()">GP3</a></li>
-                  <li><a href="#gp4" onclick="toggleMenu()">GP4</a></li>
-              </div>
-          </div>
-      </nav>
-    </menu>
-    <section class="section-gp" id="gp1">
-      <div class="section-logo bold" id="gp1-title">
-        <img class="header-logo" id="section-logo-gp1" src="project/logos/var-logo.png">
-        GP1 - Season Table (VAR v. No VAR)
-      </div>
-      <div class="section-description">
-        <p>This program displays an animated bar graph of a season table
-          to compare scores with and without VAR intervention. The teams in green 
-          are teams that have benefitted from VAR intervention, while teams in red are teams that
-          have worsened from VAR intervention.
-        </p>
-        <p><br><i>Hover over each image to replay the animation for the corresponding season.</i></p>
-      </div>
-      <div class="section-gallery">
-        <div class="section-gallery-gif">
-          <img id="GP1-2019-20" class="gif" src="project/logos/2019_20_screen.png" 
-          alt="GP1 animation for the 2019/20 season"
-          onmouseover="this.src='project/GP_1/preAnimation_2019_20.gif'"
-          onmouseout="this.src='project/logos/2019_20_screen.png'">
-          <img id="GP1-2020-21" class="gif" src="project/logos/2020_21_screen.png" 
-          alt="GP1 animation for the 2020/21 season"
-          onmouseover="this.src='project/GP_1/preAnimation_2020_21.gif'"
-          onmouseout="this.src='project/logos/2020_21_screen.png'">
-          <img id="GP1-2021-22" class="gif" src="project/logos/2021_22_screen.png" 
-          alt="GP1 animation for the 2021/22 season"
-          onmouseover="this.src='project/GP_1/preAnimation_2021_22.gif'"
-          onmouseout="this.src='project/logos/2021_22_screen.png'">
-        </div>
-      </div>
-      <div class="section-description">
-        <p>Use the dropdown menu to see stats for a specific season.</p>
-      </div>
-      <div class="section-code">
-        <div class="section-code-terminal" id="python-code">
-          <div class="section-code-terminal-name">
-            <p>GP_1.py</p>
-          </div>
-          <py-config>
-            packages = ['numpy','pandas']
-            [splashscreen]
-              enabled = false
-          </py-config>
-          <py-script src="project/GP_1/GP_1.py" terminal></py-script>
-          <div class="output" id="output-terminal">
-            <py-terminal id="terminal"></py-terminal>
-          </div>
-        </div>
-        <div class="section-code-input">
-          <form class="input-form">
-            <select class="selector" name="seasons" id="seasons">
-                <option value="select">--Select a season--</option>
-                <option value="2019/20">2019/20</option>
-                <option value="2020/21">2020/21</option>
-                <option value="2021/22">2021/22</option>
-            </select>
-          </form>
-          <button id="submit-btn" class="submit-btn bold" type="button" py-click="gp1()">RUN CODE</button>
-        </div>
-      </div>
-    </section>
-    <section class="section-gp" id="gp2">
-      <div class="section-logo bold" id="gp2-title">
-        <img class="header-logo" id="section-logo-gp2" src="project/logos/var-logo.png">
-        GP2 — Team Point Evolution (VAR v. No VAR)
-      </div>
-      <div class="section-description">
-        <p>This program displays an animated plot graph of a team's points 
-          over the course of five seasons since the introduction of VAR to 
-          the Premier League.
-        </p>
-        <p>Use the dropdown menu to see how points change for a specific team.</p>
-      </div>
-      <div class="section-code-select">
-        <form class="input-form">
-          <select name="teams" onchange="renderTeam(); renderGif();" id="teamOption">
-            <option value="" hidden selected>--Select a team--</option>
-            <option value="1" name="man-city">Man City</option>
-            <option value="2" name="man-utd">Man United</option>
-            <option value="3" name="spurs">Tottenham</option>
-            <option value="4" name="liverpool">Liverpool</option>
-            <option value="5" name="chelsea">Chelsea</option>
-            <option value="6" name="arsenal">Arsenal</option>
-            <option value="7" name="burnley">Burnley</option>
-            <option value="8" name="everton">Everton</option>
-            <option value="9" name="leicester">Leicester City</option>
-            <option value="10" name="newcastle">Newcastle Utd</option>
-            <option value="11" name="crystal-palace">Crystal Palace</option>
-            <option value="12" name="west-ham">West Ham</option>
-            <option value="13" name="brighton">Brighton</option>
-            <option value="14" name="soton">Southampton</option>
-          </select>
-        </form>
-        <div class="section-small-gallery">
-          <div class="section-small-gallery-title">
-            <img id="myImg" src="project/logos/premier-league-logo.png">
-          </div>
-          <div class="section-small-gallery-gif">
-            <img id="myImg-gif" src="project/logos/pl-stats-logo.jpg">
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+        <section id="gp3">
+            <header class="section-header">
+                <img src="project/logos/var-logo.png" alt="var-logo">
+                <h1>GP3 - VAR Net Scores</h1>
+            </header>
+            <p class="description">
+            This program displays a bar graph of participating teams for
+            a given season. The <span class="blocky">y-axis</span> corresponds to
+            the number of points awarded/deducted from VAR overturns, while
+            the <span class="blocky">x-axis</span> corresponds to a specific team.
+            </p>
+            <div class="section-bin">
+                <div class="selector"> 
+                    <label for="seasonOption">Select a season</label>
+                    <select name="seasons-gp3" id="seasonOption" onchange="renderPng()">
+                        <option hidden selected value="">Choose a Season</option>
+                        <option value="1">2019/20</option>
+                        <option value="2">2020/21</option>
+                        <option value="3">2021/22</option>
+                    </select>
+                </div>
+                <div class="section-bin-gallery">
+                    <img id="myPng" src="project/logos/pl-stats-logo.jpg">
+                </div>
+            </div>
+        </section>
+    </body>
     <footer>
-      <p>Copyright &#169; 2024 Sebastian Ashcallay. All Rights Reserved.</p>
+        <p>Copyright &#169; 2024 Sebastian Ashcallay. All Rights Reserved.</p>
     </footer>
     <script src="script.js"></script> 
-  </body>  
-</html>  
+</html>
