@@ -1,4 +1,99 @@
-@media (max-width: 800px){
+/* Mobile (Horizontal) */
+
+@media (min-width: 501px) 
+and (max-width: 1200px) 
+and (orientation: landscape) {
+   html {
+      font-size: 90%;
+   }
+
+   .nav-bar {
+      font-size: 90%;
+      height: 20px;
+   }
+
+   .selector label {
+      font-size: 80%;
+   }
+
+   .nav-icon img {
+      visibility: hidden;
+   }
+
+   section {
+      height: 600px;
+   }
+
+   .section-header {
+      top: 7%;
+   }
+
+   .section-header h1 {
+      font-size: 120%;
+   }
+
+   .description {
+      text-align: center;
+      top: 40px;
+      font-size: 90%;
+      text-align: justify;
+   }
+
+   /* GP1 */
+   .section-gallery {
+      top: 40px;
+   }
+
+   .section-gallery img {
+      width: 30%;
+   }
+
+   .section-terminal {
+      top: 40px;
+      width: 45%;
+      left: 60px;
+      height: 180px;
+   }
+
+   .section-terminal .top-block {
+      height: 40px;
+   }
+
+   .section-terminal .bottom-block {
+      top: 30px;
+   }
+
+   .selector {
+      left: 15%;
+   }
+
+   /* GP2 */
+   .section-code-select {
+      top: 160px;
+   }
+
+   .section-small-gallery-bottom {
+      height: 90vh;
+      max-height: 300px;
+   }
+
+   /* GP3 */
+   #gp3 .section-bin {
+      top: 160px;
+   }
+
+   /* FOOTER */
+   footer {
+      height: 80px;
+   }
+
+}
+
+
+/* Mobile (Vertical) */
+
+@media (max-width: 500px)
+and (orientation: portrait){
 
    html {
     font-size: 90%;
@@ -84,8 +179,4 @@
    #gp3 .section-bin-gallery img {
     border-radius: 20px;
    }
-
-
-
-
 }
